@@ -60,6 +60,10 @@ class AnimateIcons extends StatefulWidget {
 
     /// This is the radius of the splash around the Icon, will be colored with [splashColor].
     this.splashRadius,
+
+    /// The amplitude of the rotation animation in degrees
+    /// Defaults to 180
+    this.amplitude = 180.0,
   }) : super(key: key);
 
   final IconData startIcon, endIcon;
@@ -67,7 +71,7 @@ class AnimateIcons extends StatefulWidget {
   final Duration duration;
   final Curve curve;
   final bool clockwise;
-  final double size;
+  final double size, amplitude;
   final double? splashRadius;
   final Color? startIconColor, endIconColor;
   final AnimateIconController controller;
@@ -145,8 +149,8 @@ class _AnimateIconsState extends State<AnimateIcons>
     double y = 1.0 - _animation.value;
     double opacityX = x >= 0 && x <= 1.0 ? x : _controller.value;
     double opacityY = y >= 0 && y <= 1.0 ? y : (1 - _controller.value);
-    double angleX = math.pi / 180 * (180 * x);
-    double angleY = math.pi / 180 * (180 * y);
+    double angleX = math.pi / 180 * (widget.amplitude * x);
+    double angleY = math.pi / 180 * (widget.amplitude * y);
 
     Widget first() {
       final icon = Icon(widget.startIcon, size: widget.size);
