@@ -1,3 +1,3 @@
-## 0.0.1
+## [0.0.1] - 26/05/2022
 
-* TODO: Describe initial release.
+* First release
