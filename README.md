@@ -38,7 +38,7 @@ flutter pub get
 OR add the dependency manually to your `pubspec.yaml` file:
 ```yaml
 dependencies:
-  icons_animate: ^0.0.1
+  icons_animate: ^0.0.2
 ```
 Then depend on it in your class:
 ```dart

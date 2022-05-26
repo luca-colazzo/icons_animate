@@ -1,6 +1,6 @@
 name: icons_animate
 description: Use this package to animate between two static Icons and get an Animated Icon.
-version: 0.0.1
+version: 0.0.2
 repository: https://github.com/luca-colazzo/icons_animate
 homepage: https://github.com/luca-colazzo/icons_animate
 issue_tracker: https://github.com/luca-colazzo/icons_animate/issues
