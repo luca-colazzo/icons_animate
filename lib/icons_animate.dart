@@ -3,80 +3,91 @@ library icons_animate;
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
+/// This is the main class, you should only use this Widget to
+/// create your custom Animated Icon
 class AnimateIcons extends StatefulWidget {
+  /// Default constructor
   const AnimateIcons({
     Key? key,
-
-    /// The IconData that will be visible before animation Starts
     required this.startIcon,
-
-    /// The IconData that will be visible after animation ends
     required this.endIcon,
-
-    /// The callback on startIcon Press
-    /// It should return a bool
-    /// If true is returned it'll animate to the end icon
-    /// if false is returned it'll not animate to the end icons
-    required this.onStartIconPress,
-
-    /// The callback on endIcon Press
-    /// /// It should return a bool
-    /// If true is returned it'll animate to the end icon
-    /// if false is returned it'll not animate to the end icons
-    required this.onEndIconPress,
-
-    /// The size of the icons.
-    /// Defaults to 24.0
-    this.size = 24.0,
-
-    /// AnimateIcons controller
     required this.controller,
-
-    /// The color to be used for the [startIcon]
-    this.startIconColor,
-
-    // The color to be used for the [endIcon]
-    this.endIconColor,
-
-    /// The duration for which the animation runs
+    required this.onStartIconPress,
+    required this.onEndIconPress,
+    this.size = 24.0,
     this.duration = const Duration(milliseconds: 1000),
-
-    /// The curve for the animation
-    /// Default is Curves.easeInOut
     this.curve = Curves.easeInOut,
-
-    /// If the animation runs in the clockwise or anticlockwise direction
     this.clockwise = true,
-
-    /// This is the tooltip that will be used for the [startIcon]
-    this.startTooltip,
-
-    /// This is the tooltip that will be used for the [endIcon]
-    this.endTooltip,
-
-    /// This is the Color for the splash around the Icon, will be [splashRadius] wide.
-    /// Defaults to Colors.transparent
-    this.splashColor = Colors.transparent,
-
-    /// This is the radius of the splash around the Icon, will be colored with [splashColor].
-    this.splashRadius,
-
-    /// The amplitude of the rotation animation in degrees
-    /// Defaults to 180
+    this.startIconColor,
+    this.endIconColor,
     this.amplitude = 180.0,
+    this.splashRadius,
+    this.splashColor = Colors.transparent,
+    this.startTooltip,
+    this.endTooltip,
   }) : super(key: key);
 
-  final IconData startIcon, endIcon;
-  final bool Function() onStartIconPress, onEndIconPress;
-  final Duration duration;
-  final Curve curve;
-  final bool clockwise;
-  final double size, amplitude;
-  final double? splashRadius;
-  final Color? startIconColor, endIconColor;
+  /// The Icon that will be visible before animation starts
+  final IconData startIcon;
+
+  /// The Icon that will be visible after animation ends
+  final IconData endIcon;
+
+  /// The controller for the animations
   final AnimateIconController controller;
-  final String? startTooltip, endTooltip;
+
+  /// The callback on startIcon Press
+  ///
+  /// If `true` is returned it will animate to the end icon
+  /// if `false` is returned it won't animate to the end icon
+  final bool Function() onStartIconPress;
+
+  /// The callback on endIcon Press
+  ///
+  /// If `true` is returned it will animate to the starting icon
+  /// if `false` is returned it won't animate to the starting icon
+  final bool Function() onEndIconPress;
+
+  /// The size of the icons.
+  ///
+  /// Defaults to 24.0
+  final double size;
+
+  /// The duration of the animation
+  final Duration duration;
+
+  /// The curve for the animation
+  ///
+  /// Default is Curves.easeInOut
+  final Curve curve;
+
+  /// Whether the animation runs in the clockwise or anticlockwise direction
+  final bool clockwise;
+
+  /// The color to be used for the [startIcon]
+  final Color? startIconColor;
+
+  /// The color to be used for the [endIcon]
+  final Color? endIconColor;
+
+  /// The amplitude of the rotation animation in degrees
+  ///
+  /// Defaults to 180
+  final double amplitude;
+
+  /// This is the radius of the splash around the Icon, will be colored with [splashColor].
+  final double? splashRadius;
+
+  /// This is the Color for the splash around the Icon, will be [splashRadius] wide.
+  ///
+  /// Defaults to Colors.transparent
   final Color splashColor;
+
+  /// This is the tooltip that will be used for the [startIcon]
+  final String? startTooltip;
+
+  /// This is the tooltip that will be used for the [endIcon]
+  final String? endTooltip;
 
   @override
   _AnimateIconsState createState() => _AnimateIconsState();
@@ -104,7 +115,7 @@ class _AnimateIconsState extends State<AnimateIcons>
         curve: widget.clockwise ? widget.curve : widget.curve.flipped,
       ),
     );
-    initControllerFunctions();
+    _initControllers();
     super.initState();
   }
 
@@ -114,7 +125,7 @@ class _AnimateIconsState extends State<AnimateIcons>
     super.dispose();
   }
 
-  initControllerFunctions() {
+  _initControllers() {
     widget.controller.animateToEnd = () {
       if (mounted) {
         _controller.forward();
@@ -152,7 +163,7 @@ class _AnimateIconsState extends State<AnimateIcons>
     double angleX = math.pi / 180 * (widget.amplitude * x);
     double angleY = math.pi / 180 * (widget.amplitude * y);
 
-    Widget first() {
+    Widget _first() {
       final icon = Icon(widget.startIcon, size: widget.size);
       return Transform.rotate(
         angle: widget.clockwise ? angleX : -angleX,
@@ -176,7 +187,7 @@ class _AnimateIconsState extends State<AnimateIcons>
       );
     }
 
-    Widget second() {
+    Widget _second() {
       final icon = Icon(widget.endIcon);
       return Transform.rotate(
         angle: widget.clockwise ? -angleY : angleY,
@@ -203,14 +214,24 @@ class _AnimateIconsState extends State<AnimateIcons>
     return Stack(
       alignment: Alignment.center,
       children: [
-        x == 1 && y == 0 ? second() : first(),
-        x == 0 && y == 1 ? first() : second(),
+        x == 1 && y == 0 ? _second() : _first(),
+        x == 0 && y == 1 ? _first() : _second(),
       ],
     );
   }
 }
 
+/// This is a sub-controller for the icons' animations
 class AnimateIconController {
-  late bool Function() animateToStart, animateToEnd;
-  late bool Function() isStart, isEnd;
+  /// This is the function to run the animation backwards
+  late bool Function() animateToStart;
+
+  /// This is the function to run the animation forward
+  late bool Function() animateToEnd;
+
+  /// This is a simple getter to know if the animation status is at its starting point
+  late bool Function() isStart;
+
+  /// This is a simple getter to know if the animation status is at its ending point
+  late bool Function() isEnd;
 }
