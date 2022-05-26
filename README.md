@@ -1,39 +1,90 @@
-<!-- 
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+<h1 align="center">Icons Animate</h1>
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages). 
+<p align="center">
+  This is a Flutter package to make a custom <a href="https://api.flutter.dev/flutter/material/AnimatedIcon-class.html">AnimatedIcon</a> from two Icons.<br/>
+  This package is born to make AnimatedIcons easily available for any Icon and not only the few default ones
+</p>
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages). 
--->
-
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+<p align="center">
+  <img alt="GitHub branch checks state" src="https://img.shields.io/github/checks-status/luca-colazzo/icons_animate/master">
+  <img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/luca-colazzo/icons_animate">
+  <br/>
+  <img alt="Pub Version" src="https://img.shields.io/pub/v/icons_animate">
+  <img alt="Pub Points" src="https://img.shields.io/pub/points/icons_animate">
+  <br/>
+  <img alt="GitHub license" src="https://img.shields.io/github/license/luca-colazzo/icons_animate">
+  <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/luca-colazzo/icons_animate">
+  <img alt="GitHub issues" src="https://img.shields.io/github/issues/luca-colazzo/icons_animate">
+  <img alt="GitHub closed issues" src="https://img.shields.io/github/issues-closed/luca-colazzo/icons_animate">
+  
+</p>
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+Here are some examples of animated icons.
+> Note that you can provide any Icon that is of type `IconData` to the animator
+
+// TODO: add GIFs
+
+You can see an example of some icons being animated in the [Sample Project](example/lib/main.dart)
 
 ## Getting started
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+To install the package just do:
+```
+flutter pub add icons_animate
+flutter pub get
+```
+OR add the dependency manually to your `pubspec.yaml` file:
+```yaml
+dependencies:
+  icons_animate: ^0.0.1
+```
+Then depend on it in your class:
+```dart
+import 'package:icons_animate/icons_animate.dart';
+```
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
-
+Here is a simple implementation:
 ```dart
-const like = 'sample';
+AnimateIcons(
+    startIcon: Icons.add_circle,
+    endIcon: Icons.add_circle_outline,
+    size: 100.0,
+    controller: controller,
+    startTooltip: 'Icons.add_circle',
+    endTooltip: 'Icons.add_circle_outline',
+    // add this for splashColor, default is Colors.transparent means no click effect
+    splashColor: Colors.blueAccent.shade100.withAlpha(50),
+    // add this to specify a custom splashRadius
+    // default is Material.defaultSplashRadius (35)
+    splashRadius: 24,
+    onStartIconPress: () {
+        print("Clicked on Add Icon");
+        return true;
+    },
+    onEndIconPress: () {
+        print("Clicked on Close Icon");
+        return true;
+    },
+    duration: Duration(milliseconds: 500),
+    startIconColor: Colors.deepPurple,
+    endIconColor: Colors.deepOrange,
+    clockwise: false,
+),
 ```
 
-## Additional information
 
-TODO: Tell users more about the package: where to find more information, how to 
-contribute to the package, how to file issues, what response they can expect 
-from the package authors, and more.
+See [Example Code](example/lib/main.dart) for more info.
+
+### Issues & Feedback
+
+Please file an [issue](https://github.com/luca-colazzo/icons_animate/issues) to send feedback or report a bug,  
+If you want to ask a question or suggest an idea then you can [open an discussion](https://github.com/luca-colazzo/icons_animate/discussions).  
+Thank you!
+
+### Contributing
+
+Every PR is welcome.
