@@ -38,6 +38,6 @@ jobs:
         run: cd example && flutter build apk && flutter build appbundle
 
       - name: Build web
-        run: flutter build web
+        run: cd example && flutter build web
 
       
