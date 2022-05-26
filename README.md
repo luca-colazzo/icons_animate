@@ -24,7 +24,7 @@
 Here are some examples of animated icons.
 > Note that you can provide any Icon that is of type `IconData` to the animator
 
-<img src="https://raw.githubusercontent.com/luca-colazzo/icons_animate/main/.media/example.gif"/>
+![example gif](https://raw.githubusercontent.com/luca-colazzo/icons_animate/master/.media/example.gif)
 
 You can see an example of some icons being animated in the [Sample Project](example/lib/main.dart)
 
