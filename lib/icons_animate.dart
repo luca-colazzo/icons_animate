@@ -25,8 +25,9 @@ class AnimateIcons extends StatefulWidget {
     /// if false is returned it'll not animate to the end icons
     required this.onEndIconPress,
 
-    /// The size of the icon that are to be shown.
-    this.size,
+    /// The size of the icons.
+    /// Defaults to 24.0
+    this.size = 24.0,
 
     /// AnimateIcons controller
     required this.controller,
@@ -52,6 +53,13 @@ class AnimateIcons extends StatefulWidget {
 
     /// This is the tooltip that will be used for the [endIcon]
     this.endTooltip,
+
+    /// This is the Color for the splash around the Icon, will be [splashRadius] wide.
+    /// Defaults to Colors.transparent
+    this.splashColor = Colors.transparent,
+
+    /// This is the radius of the splash around the Icon, will be colored with [splashColor].
+    this.splashRadius,
   }) : super(key: key);
 
   final IconData startIcon, endIcon;
@@ -59,10 +67,12 @@ class AnimateIcons extends StatefulWidget {
   final Duration duration;
   final Curve curve;
   final bool clockwise;
-  final double? size;
+  final double size;
+  final double? splashRadius;
   final Color? startIconColor, endIconColor;
   final AnimateIconController controller;
   final String? startTooltip, endTooltip;
+  final Color splashColor;
 
   @override
   _AnimateIconsState createState() => _AnimateIconsState();
@@ -145,7 +155,9 @@ class _AnimateIconsState extends State<AnimateIcons>
         child: Opacity(
           opacity: opacityY,
           child: IconButton(
-            iconSize: widget.size ?? 24.0,
+            splashColor: widget.splashColor,
+            splashRadius: widget.splashRadius,
+            iconSize: widget.size,
             color: widget.startIconColor ?? Theme.of(context).primaryColor,
             disabledColor: Colors.grey.shade500,
             icon: widget.startTooltip == null
@@ -167,7 +179,9 @@ class _AnimateIconsState extends State<AnimateIcons>
         child: Opacity(
           opacity: opacityX,
           child: IconButton(
-            iconSize: widget.size ?? 24.0,
+            splashColor: widget.splashColor,
+            splashRadius: widget.splashRadius,
+            iconSize: widget.size,
             color: widget.endIconColor ?? Theme.of(context).primaryColor,
             disabledColor: Colors.grey.shade500,
             icon: widget.endTooltip == null
