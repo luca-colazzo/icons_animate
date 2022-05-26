@@ -3,6 +3,7 @@ description: Use this package to animate between two static Icons and get an Ani
 version: 0.0.1
 repository: https://github.com/luca-colazzo/icons_animate
 homepage: https://github.com/luca-colazzo/icons_animate
+issue_tracker: https://github.com/luca-colazzo/icons_animate/issues
 
 environment:
   sdk: ">=2.17.0 <3.0.0"
