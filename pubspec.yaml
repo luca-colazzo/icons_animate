@@ -1,5 +1,5 @@
 name: icons_animate
-description: A new Flutter package project.
+description: Use this package to animate between two static Icons and get an Animated Icon.
 version: 0.0.1
 repository: https://github.com/luca-colazzo/icons_animate
 homepage: https://github.com/luca-colazzo/icons_animate
