@@ -16,7 +16,7 @@
   <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/luca-colazzo/icons_animate">
   <img alt="GitHub issues" src="https://img.shields.io/github/issues/luca-colazzo/icons_animate">
   <img alt="GitHub closed issues" src="https://img.shields.io/github/issues-closed/luca-colazzo/icons_animate">
-  
+
 </p>
 
 ## Features
@@ -24,7 +24,7 @@
 Here are some examples of animated icons.
 > Note that you can provide any Icon that is of type `IconData` to the animator
 
-// TODO: add GIFs
+<img src="https://raw.githubusercontent.com/luca-colazzo/icons_animate/main/.media/example.gif"/>
 
 You can see an example of some icons being animated in the [Sample Project](example/lib/main.dart)
 
@@ -81,8 +81,8 @@ See [Example Code](example/lib/main.dart) for more info.
 
 ### Issues & Feedback
 
-Please file an [issue](https://github.com/luca-colazzo/icons_animate/issues) to send feedback or report a bug,  
-If you want to ask a question or suggest an idea then you can [open an discussion](https://github.com/luca-colazzo/icons_animate/discussions).  
+Please file an [issue](https://github.com/luca-colazzo/icons_animate/issues) to send feedback or report a bug,
+If you want to ask a question or suggest an idea then you can [open an discussion](https://github.com/luca-colazzo/icons_animate/discussions).
 Thank you!
 
 ### Contributing
